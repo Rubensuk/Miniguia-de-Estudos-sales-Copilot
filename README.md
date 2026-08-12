@@ -82,3 +82,24 @@ A construção dos roteiros passou por diversas iterações para garantir que a 
 * **Autor:** Rubens Oliveira Silva
 * **Projeto:** Miniguia de Estudos / Sales Copilot com IA Generativa
 * **Ferramenta de Suporte:** Google NotebookLM
+---
+
+## 📑 Miniguia de Estudos & Prompts Reutilizáveis (Entrega Final)
+
+### 1. Resumo Estruturado do Aprendizado
+* **Giro vs. Margem:** Produtos de alto giro (Classe A) sustentam a rentabilidade global do PDV pelo volume acumulado, mesmo com margens unitárias menores.
+* **Execução de Geladeira (GDM):** O espaço gelado deve refletir a Curva ABC de vendas; produto gelado na posição nobre garante conversão imediata.
+* **Contorno de Objeções:** A resposta eficaz combina empatia inicial com ancoragem na matemática comercial do cliente final.
+
+### 🛠️ Kit de Prompts Reutilizáveis (Para Uso Diário)
+
+Estes prompts foram calibrados no NotebookLM e podem ser reutilizados diretamente por representantes de vendas:
+
+1. **Prompt para Objeção de Preço/Margem:**
+   > *"Atue como um Consultor de Vendas FMCG. O cliente do PDV alega que a margem do produto [NOME DO PRODUTO] é baixa em relação à concorrência. Gere uma resposta em 3 frases focando na velocidade de giro do estoque e rentabilidade no mês."*[cite: 1]
+
+2. **Prompt para Objeção de Espaço em Geladeira:**
+   > *"O cliente diz que não tem espaço na geladeira para colocar nossa marca. Com base no conceito de Curva ABC, monte um argumento mostrando como substituir um item de baixo giro por um Classe A aumentará o faturamento dele."*[cite: 1]
+
+3. **Prompt para Checklist de Execução Comercial:**
+   > *"Gere um checklist rápido de 5 pontos para eu auditar a execução da geladeira (GDM) e o Share of Shelf antes de iniciar a negociação com o cliente."*[cite: 1]
