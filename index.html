@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Copilot - Inteligência Comercial</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-card: #1e293b;
+            --bg-input: #334155;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #475569;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        h1, h2 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent);
+        }
+
+        .custom-obj-group {
+            display: none;
+            margin-top: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .output-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .script-box, .blueprint-box {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            position: relative;
+        }
+
+        .script-box {
+            flex-grow: 1;
+        }
+
+        .script-content {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            color: #e2e8f0;
+        }
+
+        .blueprint-content {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #a7f3d0;
+            white-space: pre-wrap;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .btn-copy {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: auto;
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            background-color: var(--border);
+        }
+
+        .btn-copy:hover {
+            background-color: #64748b;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #0284c7;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- LADO ESQUERDO: PAINEL DE CONTROLE -->
+    <div class="input-panel">
+        <h1>🎯 Sales Copilot</h1>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">
+            Assistente inteligente de contorno de objeções comerciais para PDVs de bebidas.
+        </p>
+
+        <div class="form-group">
+            <label for="vendedor">Nome do Vendedor / Consultor</label>
+            <input type="text" id="vendedor" value="Rubens Silva" placeholder="Ex: Rubens">
+        </div>
+
+        <div class="form-group">
+            <label for="cliente">Nome do Cliente / PDV</label>
+            <input type="text" id="cliente" value="Bar do Silva" placeholder="Ex: Bar Central">
+        </div>
+
+        <div class="form-group">
+            <label for="produto">Produto em Negociação</label>
+            <select id="produto">
+                <option value="Spaten" data-category="Cervejas Premium">Spaten (Long Neck/600ml)</option>
+                <option value="Corona" data-category="Cervejas Premium">Corona Extra</option>
+                <option value="Brahma Duplo Malte" data-category="Mainstream">Brahma Duplo Malte</option>
+                <option value="Guaraná Antarctica Zero" data-category="Zero">Guaraná Antarctica Zero</option>
+                <option value="Beats Zeca" data-category="RTD">Beats Senses / RTD</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="objecao">Objeção Principal do PDV</label>
+            <select id="objecao">
+                <option value="preco">"Está muito caro / Não tenho margem"</option>
+                <option value="estoque">"Estou com estoque parado / Sem giro"</option>
+                <option value="geladeira">"Sem espaço na geladeira / Sem expositor"</option>
+                <option value="concorrencia">"A concorrência vende mais barato"</option>
+                <option value="custom">Outra objeção (Digitar)...</option>
+            </select>
+        </div>
+
+        <div class="form-group custom-obj-group" id="customObjGroup">
+            <label for="customObjText">Digite a objeção personalizada:</label>
+            <input type="text" id="customObjText" placeholder="Ex: O cliente só aceita se for consignado">
+        </div>
+
+        <button id="btnGerar">⚡ Gerar Roteiro Inteligente</button>
+    </div>
+
+    <!-- LADO DIREITO: RESPOSTA DA IA & BLUEPRINT -->
+    <div class="output-panel">
+        <div class="script-box">
+            <span class="tag">Roteiro Recomendado (4 Passos)</span>
+            <button class="btn-copy" id="btnCopiar">Copiar</button>
+            <div class="script-content" id="scriptOutput">
+Clique em "Gerar Roteiro Inteligente" para criar a estratégia de negociação ideal para o seu Ponto de Venda.
+            </div>
+        </div>
+
+        <div class="blueprint-box">
+            <span class="tag" style="background:#059669;">Prompt Blueprint (Engenharia de Prompt)</span>
+            <div class="blueprint-content" id="blueprintOutput">
+// Os parâmetros do System Prompt e Engenharia de Prompt aparecerão aqui em tempo real.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const dbMatrix = {
+        "preco": {
+            "Cervejas Premium": [
+                "Passo 1 (Empatia): Entendo perfeitamente, {cliente}. O preço de capa parece mais alto, mas o consumidor de Premium não busca menor preço, busca experiência.",
+                "Passo 2 (Ancoragem): A {produto} tem uma margem absoluta por garrafa muito superior à cerveja comum. Cada garrafa vendida deixa mais R$ líquido no seu caixa.",
+                "Passo 3 (Ação): Vamos posicionar a {produto} na linha dos olhos da geladeira principal por 7 dias.",
+                "Passo 4 (Fechamento): Posso fechar meio lote para você testar essa margem neste fim de semana, {cliente}?"
+            ],
+            "default": [
+                "Passo 1 (Empatia): Compreendo sua preocupação com custos, {cliente}. A margem é crucial para o seu negócio.",
+                "Passo 2 (Ancoragem): O giro do {produto} garante que seu capital não fique travado no estoque.",
+                "Passo 3 (Ação): Posso te dar suporte na precificação ideal de ponta para acelerar a saída.",
+                "Passo 4 (Fechamento): Vamos incluir 2 caixas no pedido de hoje para não deixar seu cliente sem opção?"
+            ]
+        },
+        "estoque": {
+            "default": [
+                "Passo 1 (Empatia): Sei como é ruim ver mercadoria parada no depósito, {cliente}.",
+                "Passo 2 (Ancoragem): O {produto} é um item de alta demanda programada. Se ele travou, o problema costuma ser visibilidade, não o produto.",
+                "Passo 3 (Ação): Eu mesmo ajudo a organizar a geladeira e colocar material de divulgação na mesa hoje.",
+                "Passo 4 (Fechamento): Garantindo a execução visual hoje, fechamos um pedido complementar menor?"
+            ]
+        },
+        "geladeira": {
+            "default": [
+                "Passo 1 (Empatia): Espaço em geladeira é ouro no seu comércio, {cliente}, concordo totalmente.",
+                "Passo 2 (Ancoragem): O {produto} é o item que entrega maior giro por metro quadrado gelado na sua categoria.",
+                "Passo 3 (Ação): Vamos reorganizar as marcas de baixo giro no pé da geladeira e colocar o {produto} no ponto nobre.",
+                "Passo 4 (Fechamento): Ajustando esse espaço agora, podemos incluir a remessa para entregar amanhã?"
+            ]
+        },
+        "concorrencia": {
+            "default": [
+                "Passo 1 (Empatia): O mercado está bem agressivo mesmo, {cliente}, entendo a comparação.",
+                "Passo 2 (Ancoragem): O cliente que pede {produto} não aceita substituto genérico. Trocar marca faz você perder a venda da mesa inteira.",
+                "Passo 3 (Ação): Mantemos o {produto} estalando de gelado para garantir a fidelidade do seu cliente de maior tíquete.",
+                "Passo 4 (Fechamento): Vamos travar o lote da semana para você não ficar desabastecido?"
+            ]
+        }
+    };
+
+    // DOM Elements
+    const objSelect = document.getElementById('objecao');
+    const customGroup = document.getElementById('customObjGroup');
+    const btnGerar = document.getElementById('btnGerar');
+    const btnCopiar = document.getElementById('btnCopiar');
+    const scriptOutput = document.getElementById('scriptOutput');
+    const blueprintOutput = document.getElementById('blueprintOutput');
+
+    // Toggle custom objection input
+    objSelect.addEventListener('change', () => {
+        if (objSelect.value === 'custom') {
+            customGroup.style.display = 'block';
+        } else {
+            customGroup.style.display = 'none';
+        }
+    });
+
+    // Generate Script
+    btnGerar.addEventListener('click', () => {
+        const vendedor = document.getElementById('vendedor').value || "Vendedor";
+        const cliente = document.getElementById('cliente').value || "Cliente";
+        const prodSelect = document.getElementById('produto');
+        const produto = prodSelect.value;
+        const categoria = prodSelect.options[prodSelect.selectedIndex].getAttribute('data-category');
+        const objKey = objSelect.value;
+
+        let objTexto = objSelect.options[objSelect.selectedIndex].text;
+        if (objKey === 'custom') {
+            objTexto = document.getElementById('customObjText').value || "Objeção Personalizada";
+        }
+
+        // Get script template
+        let templateList = (dbMatrix[objKey] && dbMatrix[objKey][categoria]) 
+            || (dbMatrix[objKey] && dbMatrix[objKey]["default"]) 
+            || dbMatrix["preco"]["default"];
+
+        let scriptFinal = templateList.map(step => {
+            return step.replace(/{cliente}/g, cliente)
+                       .replace(/{vendedor}/g, vendedor)
+                       .replace(/{produto}/g, produto);
+        }).join('\n\n');
+
+        if (objKey === 'custom') {
+            scriptFinal = `Passo 1 (Empatia): Entendo seu ponto sobre "${objTexto}", ${cliente}.\n\n` +
+                          `Passo 2 (Valor): No entanto, trabalhar com ${produto} garante liquidez rápida e preferência do consumidor.\n\n` +
+                          `Passo 3 (Ação): Vamos estruturar um teste controlado para este final de semana.\n\n` +
+                          `Passo 4 (Fechamento): Podemos confirmar a entrega inicial para amanhã, ${cliente}?`;
+        }
+
+        // Render script
+        scriptOutput.innerText = scriptFinal;
+
+        // Render Prompt Blueprint
+        blueprintOutput.innerText = `SYSTEM PROMPT:
+Role: Especialista em Negociação & Trade Marketing FMCG
+Context: Vendedor (${vendedor}) negociando com PDV (${cliente})
+Product: ${produto} [Categoria: ${categoria}]
+User Objection: "${objTexto}"
+
+PROMPT BLUEPRINT INJECTED:
+"Atue como Copiloto de Vendas. Gere um roteiro persuasivo de 4 passos focado em giro, margem e execução visual para contornar a objeção '${objTexto}' no produto ${produto}."`;
+    });
+
+    // Copy Button
+    btnCopiar.addEventListener('click', () => {
+        navigator.clipboard.writeText(scriptOutput.innerText);
+        btnCopiar.innerText = "Copiado!";
+        setTimeout(() => { btnCopiar.innerText = "Copiar"; }, 2000);
+    });
+</script>
+
+</body>
+</html>
