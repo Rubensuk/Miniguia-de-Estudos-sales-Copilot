@@ -57,3 +57,28 @@ A construção dos roteiros passou por diversas iterações para garantir que a 
   Passo 2: Ancoragem de Valor / Matemática Comercial
   Passo 3: Ação Prática / Experiência no PDV
   Passo 4: Fechamento Comercial (Pergunta Diretiva)
+---
+
+## 📖 Glossário de Termos Técnicos (FMCG & Trade Marketing)
+
+* **FMCG (Fast-Moving Consumer Goods):** Bens de consumo de rápido giro (bebidas e alimentos de consumo diário)[cite: 1].
+* **PDV (Ponto de Venda):** Estabelecimentos comerciais atendidos pelas rotas (bares, restaurantes, mercearias, conveniências).
+* **GDM (Glass Door Merchandiser):** Expositores e geladeiras de porta de vidro no PDV.
+* **Curva ABC (Regra 80/20):** Método de classificação de estoque onde 20% do portfólio (Classe A) representa cerca de 80% do faturamento de vendas[cite: 1].
+* **SOVI / Share of Shelf:** Porcentagem de espaço físico ocupado pelas marcas da empresa na geladeira ou prateleira do cliente em relação aos concorrentes[cite: 1].
+* **Ruptura / Out of Stock (OOS):** Ausência do produto nas prateleiras/geladeiras no momento da compra pelo consumidor final[cite: 1].
+
+---
+
+## 📚 Fontes e Materiais de Apoio Utilizados
+
+* **`2-Trade-Marketing-no-Brasil.pdf`**: Documento de conceitos e práticas de Trade Marketing, comportamento do shopper e execução no PDV.
+* **`curva_abc_totvs.pdf`**: Guia técnico sobre o princípio de Pareto aplicado à gestão de portfólio, margem e giro em vendas FMCG[cite: 1].
+* **NotebookLM (Google):** Plataforma utilizada para compilação das fontes, testes de instrução e geração dos cadernos de apoio ao Sales Copilot.
+
+---
+
+## 🔗 Entrega DIO
+* **Autor:** Rubens Oliveira Silva
+* **Projeto:** Miniguia de Estudos / Sales Copilot com IA Generativa
+* **Ferramenta de Suporte:** Google NotebookLM
